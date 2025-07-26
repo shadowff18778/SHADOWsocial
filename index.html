@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>NUSA444</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://wallpapercave.com/wp/wp6476907.jpg') center/cover no-repeat fixed;
+      position: relative;
+      overflow: hidden;
+    }
+
+    canvas#rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .name {
+      font-size: 2.4rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      background: linear-gradient(90deg, rgba(255,255,255,0.2), #fff, rgba(255,255,255,0.2));
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shimmer 3s linear infinite;
+      padding: 0.4rem 1rem;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      background-color: rgba(255,255,255,0.05);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      margin-top: -20px;
+    }
+
+    .button {
+      width: 240px;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      color: white;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button span {
+      flex: 1;
+      text-align: center;
+    }
+
+    .button::before {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+      transform: rotate(25deg);
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .button:hover::before {
+      top: 0%;
+      left: 0%;
+      opacity: 1;
+      animation: shine 1.2s ease forwards;
+    }
+
+    @keyframes shine {
+      0% {
+        top: -100%;
+        left: -50%;
+        opacity: 0;
+      }
+      50% {
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        left: 100%;
+        opacity: 0;
+      }
+    }
+
+    .button:hover {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+      transform: translateY(-3px);
+    }
+
+    .button:active {
+      transform: scale(0.96);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .button img {
+      width: 30px;
+      height: 30px;
+      margin-right: 12px;
+      filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)) brightness(1.2);
+      opacity: 0.9;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .button:hover img {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    @keyframes signatureFade {
+      0%, 40% {
+        opacity: 1;
+        text-shadow: none;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      50%, 90% {
+        opacity: 0.2;
+        color: transparent;
+        text-shadow: 0 0 2px rgba(255,255,255,0.3);
+      }
+      100% {
+        opacity: 1;
+        color: rgba(255,255,255,0.4);
+        text-shadow: none;
+      }
+    }
+
+    .signature {
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.75rem;
+      font-style: italic;
+      letter-spacing: 1px;
+      pointer-events: none;
+      user-select: none;
+      animation: signatureFade 2s infinite ease-in-out;
+    }
+
+    @media screen and (max-width: 600px) {
+      .name {
+        font-size: 1.8rem;
+      }
+
+      .button {
+        width: 180px;
+        padding: 0.8rem;
+      }
+
+      .button img {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="rain"></canvas>
+  <div class="container">
+    <div class="name">NUSA444</div>
+    <div class="buttons">
+      <a href="https://t.me/tonlien" class="button">
+        <img src="https://i.imgur.com/6n2L3ZB.png" alt="Telegram" />
+        <span>TELEGRAM</span>
+      </a>
+      <a href="https://vk.com/tonlien" class="button">
+        <img src="https://i.imgur.com/K0j92us.png" alt="VK" />
+        <span>VK</span>
+      </a>
+      <a href="https://donationalerts.com/tonlien" class="button">
+        <img src="https://i.imgur.com/wlf6Oa5.png" alt="Donate" />
+        <span>YOUTUBE</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="signature">Powered by SHADOW</div>
+
+  <script>
+    const canvas = document.getElementById("rain");
+    const ctx = canvas.getContext("2d");
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    const drops = [];
+
+    for (let i = 0; i < 300; i++) {
+      drops.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        len: Math.random() * 20 + 10,
+        speed: Math.random() * 4 + 2
+      });
+    }
+
+    function drawRain() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+      ctx.lineWidth = 1;
+      for (let d of drops) {
+        ctx.beginPath();
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.len);
+        ctx.stroke();
+        d.y += d.speed;
+        if (d.y > height) {
+          d.y = -20;
+          d.x = Math.random() * width;
+        }
+      }
+      requestAnimationFrame(drawRain);
+    }
+
+    drawRain();
+    window.addEventListener("resize", () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
