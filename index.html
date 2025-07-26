@@ -2,24 +2,28 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NUSA444</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100vw;
       height: 100vh;
+      overflow: hidden;
+      position: fixed;
       font-family: 'Segoe UI', sans-serif;
       background: url('https://wallpapercave.com/wp/wp6476907.jpg') center/cover no-repeat fixed;
-      position: relative;
-      overflow: hidden;
     }
 
     canvas#rain {
       position: fixed;
       top: 0;
       left: 0;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
       z-index: 1;
     }
@@ -27,16 +31,19 @@
     .container {
       position: relative;
       z-index: 2;
-      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 2rem;
+      width: 100vw;
+      height: 100vh;
+      padding-top: 4rem;
+      text-align: center;
+      gap: 2rem;
     }
 
     .name {
-      font-size: 2.4rem;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
       font-family: 'Orbitron', sans-serif;
       font-weight: 600;
       background: linear-gradient(90deg, rgba(255,255,255,0.2), #fff, rgba(255,255,255,0.2));
@@ -45,13 +52,13 @@
       -webkit-background-clip: text;
       color: transparent;
       animation: shimmer 3s linear infinite;
-      padding: 0.4rem 1rem;
+      padding: 0.6rem 1rem;
       border-radius: 12px;
       backdrop-filter: blur(6px);
       background-color: rgba(255,255,255,0.05);
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
-      margin-top: 2rem;
-      margin-bottom: 3rem;
+      text-align: center;
+      z-index: 10;
     }
 
     @keyframes shimmer {
@@ -62,14 +69,14 @@
     .buttons {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
       align-items: center;
-      margin-top: -20px;
+      justify-content: center;
     }
 
     .button {
-      width: 240px;
-      padding: 1rem 1.2rem;
+      width: clamp(160px, 60vw, 240px);
+      padding: 1rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.08);
@@ -87,6 +94,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: clamp(0.85rem, 3vw, 1rem);
     }
 
     .button span {
@@ -115,21 +123,9 @@
     }
 
     @keyframes shine {
-      0% {
-        top: -100%;
-        left: -50%;
-        opacity: 0;
-      }
-      50% {
-        top: 50%;
-        left: 50%;
-        opacity: 1;
-      }
-      100% {
-        top: 100%;
-        left: 100%;
-        opacity: 0;
-      }
+      0% { top: -100%; left: -50%; opacity: 0; }
+      50% { top: 50%; left: 50%; opacity: 1; }
+      100% { top: 100%; left: 100%; opacity: 0; }
     }
 
     .button:hover {
@@ -144,9 +140,9 @@
     }
 
     .button img {
-      width: 30px;
-      height: 30px;
-      margin-right: 12px;
+      width: clamp(20px, 6vw, 30px);
+      height: clamp(20px, 6vw, 30px);
+      margin-right: 8px;
       filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)) brightness(1.2);
       opacity: 0.9;
       transition: transform 0.3s ease;
@@ -158,22 +154,10 @@
       opacity: 1;
     }
 
-    @keyframes signatureFade {
-      0%, 40% {
-        opacity: 1;
-        text-shadow: none;
-        color: rgba(255, 255, 255, 0.4);
-      }
-      50%, 90% {
-        opacity: 0.2;
-        color: transparent;
-        text-shadow: 0 0 2px rgba(255,255,255,0.3);
-      }
-      100% {
-        opacity: 1;
-        color: rgba(255,255,255,0.4);
-        text-shadow: none;
-      }
+    .button:focus,
+    .button:focus-visible {
+      outline: none;
+      box-shadow: none;
     }
 
     .signature {
@@ -187,23 +171,13 @@
       pointer-events: none;
       user-select: none;
       animation: signatureFade 2s infinite ease-in-out;
+      color: rgba(255,255,255,0.4);
     }
 
-    @media screen and (max-width: 600px) {
-      .name {
-        font-size: 1.8rem;
-      }
-
-      .button {
-        width: 180px;
-        padding: 0.8rem;
-      }
-
-      .button img {
-        width: 20px;
-        height: 20px;
-        margin-right: 8px;
-      }
+    @keyframes signatureFade {
+      0%, 40% { opacity: 1; }
+      50%, 90% { opacity: 0.2; }
+      100% { opacity: 1; }
     }
   </style>
 </head>
@@ -226,9 +200,7 @@
       </a>
     </div>
   </div>
-
   <div class="signature">Powered by SHADOW</div>
-
   <script>
     const canvas = document.getElementById("rain");
     const ctx = canvas.getContext("2d");
@@ -271,3 +243,4 @@
   </script>
 </body>
 </html>
+
