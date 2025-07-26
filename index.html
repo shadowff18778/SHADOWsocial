@@ -43,7 +43,7 @@
 
     .name {
       position: absolute;
-      top: 0;
+      top: 2rem;
       left: 50%;
       transform: translateX(-50%);
       font-size: clamp(1.8rem, 5vw, 2.6rem);
@@ -98,14 +98,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 0.4rem;
+      text-align: center;
       font-size: clamp(0.85rem, 3vw, 1rem);
-
-      outline: none; /* Enlever focus outline */
-      -webkit-tap-highlight-color: transparent; /* Enlever surbrillance mobile */
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .button span {
-      flex: 1;
       text-align: center;
     }
 
@@ -153,9 +153,9 @@
     }
 
     .button img {
-      width: clamp(24px, 6vw, 34px); /* un peu plus grand */
+      width: clamp(24px, 6vw, 34px);
       height: clamp(24px, 6vw, 34px);
-      margin-right: 8px;
+      margin-right: 0;
       filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)) brightness(1.2);
       opacity: 0.9;
       transition: transform 0.3s ease;
@@ -250,3 +250,4 @@
   </script>
 </body>
 </html>
+
