@@ -33,16 +33,19 @@
       z-index: 2;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       width: 100vw;
       height: 100vh;
-      padding-top: 4rem;
+      padding: 2rem;
       text-align: center;
-      gap: 2rem;
     }
 
     .name {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: clamp(1.8rem, 5vw, 2.6rem);
       font-family: 'Orbitron', sans-serif;
       font-weight: 600;
@@ -57,6 +60,7 @@
       backdrop-filter: blur(6px);
       background-color: rgba(255,255,255,0.05);
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      margin-bottom: 2rem;
       text-align: center;
       z-index: 10;
     }
@@ -95,6 +99,9 @@
       align-items: center;
       justify-content: center;
       font-size: clamp(0.85rem, 3vw, 1rem);
+
+      outline: none; /* Enlever focus outline */
+      -webkit-tap-highlight-color: transparent; /* Enlever surbrillance mobile */
     }
 
     .button span {
@@ -139,9 +146,15 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
+    .button:focus,
+    .button:focus-visible {
+      outline: none;
+      box-shadow: none;
+    }
+
     .button img {
-      width: clamp(20px, 6vw, 30px);
-      height: clamp(20px, 6vw, 30px);
+      width: clamp(24px, 6vw, 34px); /* un peu plus grand */
+      height: clamp(24px, 6vw, 34px);
       margin-right: 8px;
       filter: drop-shadow(0 0 4px rgba(255,255,255,0.4)) brightness(1.2);
       opacity: 0.9;
@@ -152,12 +165,6 @@
     .button:hover img {
       transform: scale(1.1);
       opacity: 1;
-    }
-
-    .button:focus,
-    .button:focus-visible {
-      outline: none;
-      box-shadow: none;
     }
 
     .signature {
@@ -243,4 +250,3 @@
   </script>
 </body>
 </html>
-
